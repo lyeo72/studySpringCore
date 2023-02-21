@@ -1,5 +1,6 @@
 package com.spring.core.order;
 
+import com.spring.core.AppConfig;
 import com.spring.core.member.Grade;
 import com.spring.core.member.Member;
 import com.spring.core.member.MemberService;
@@ -9,12 +10,14 @@ import org.junit.jupiter.api.Test;
 
 public class OrderServiceTest {
 
-    MemberService memberService = new MemberServiceImpl();
-    OrderService orderService = new OrderServiceImpl();
+    AppConfig appConfig = new AppConfig();
 
     @Test
     void createOrder() {
         //given
+        MemberService memberService = appConfig.memberService();
+        OrderService orderService = appConfig.orderService();
+
         Long memberId = 1L;
         Member member = new Member(memberId, "shampoo", Grade.VIP);
         memberService.join(member);
